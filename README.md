@@ -8,42 +8,40 @@
 * [cite_start]**기대 효과**: 이커머스 플랫폼에서 신상품 출시 전략 수립 및 초기 대응을 위한 실질적 데이터 제공[cite: 12, 117].
 
 ## 2. 데이터 및 전처리 (Data & Preprocessing)
-* [cite_start]**데이터셋**: 2023년 Amazon 제품 리뷰 데이터 (asin, text, rating, time_stamp 포함)[cite: 20, 21].
+* [cite_start]**데이터셋**: 2023년 Amazon 제품 리뷰 데이터 (**asin** , **text** , **rating** , **time_stamp** 포함)[cite: 20, 21].
 * **데이터 선별**: 
     * [cite_start]최소 10건 이상의 리뷰를 보유한 상품 선별[cite: 44, 45].
     * [cite_start]제품 출시 후 6개월 이내의 리뷰만을 '초기 리뷰'로 간주하여 추출[cite: 46, 47].
 * **텍스트 전처리**:
-    * [cite_start]소문자 변환, URL, 특수문자, 불용어(stopwords) 제거[cite: 49].
+    * [cite_start]소문자 변환, URL, 특수문자, 불용어(**stopwords** ) 제거[cite: 49].
     * [cite_start]**Keras Tokenizer** 를 통해 상위 10,000개 단어 사용 및 길이 500으로 패딩 처리[cite: 50, 51].
 * [cite_start]**데이터 구성**: 개별 사용자의 리뷰를 하나로 결합(**concatenate** )하여 상품 전체에 대한 종합 평가 텍스트로 변환[cite: 106, 107].
 
 ## 3. 모델 아키텍처 (Model Architecture)
 [cite_start]모델은 **LSTM** 과 **Attention** 메커니즘을 결합한 구조로 설계되었습니다[cite: 56, 118].
 
-* [cite_start]**Embedding Layer**: 10,000개 단어를 64차원 벡터로 변환하며, 리뷰 데이터에 적합한 표현을 스스로 학습합니다[cite: 60, 61].
+* [cite_start]**Embedding Layer**: 10,000개 단어를 64차원 벡터로 변환하며, 리뷰 데이터에 적합한 표현을 스스로 학습합니다[cite: 61, 121].
 * **LSTM Layers**: 
     * [cite_start]첫 번째 층: 64 units, 전체 시퀀스 반환 (**return_sequences=True** )[cite: 64].
     * [cite_start]두 번째 층: 32 units, 시퀀스 정보 압축[cite: 65].
     * [cite_start]각 계층 사이 **Dropout** 을 적용하여 과적합(**Overfitting** ) 방지[cite: 66, 119].
-* [cite_start]**Attention Mechanism**: **Self-Attention** 구조를 통해 시퀀스 내 중요한 단어에 가중치를 부여하고 핵심 문맥 벡터(**Context Vector** )를 추출합니다[cite: 68, 72].
-
-
+* [cite_start]**Attention Mechanism**: **Self-Attention** 구조를 통해 시퀀스 내 중요한 단어에 가중치를 부여하고 핵심 문맥 벡터(**Context Vector** )를 추출합니다[cite: 70, 72].
 
 ## 4. 학습 결과 및 성능 (Results)
 * **성능 지표**:
     * [cite_start]**MAE (Mean Absolute Error)** : **0.3893** (목표치 0.5 이내 달성)[cite: 81, 122].
     * [cite_start]**MAPE (Mean Absolute Percentage Error)** : **11.19%**[cite: 84, 122].
 * **결과 해석**:
-    * [cite_start]3.5점 이상의 높은 평점대에서 실제값과 예측값의 일치도가 매우 높음[cite: 91, 125].
+    * [cite_start]3.5점 이상의 높은 평점대에서 실제값과 예측값의 일치도가 매우 높음[cite: 91].
     * [cite_start]잔차 분석 결과, 오차가 0을 중심으로 대칭적인 정규분포를 형성하여 모델의 안정성 확인[cite: 93, 124].
 
 ## 5. 결론 및 제언 (Conclusion)
-* [cite_start]**성능 검증**: 간단한 구조의 **LSTM** 및 **Attention** 결합 모델만으로도 유의미한 예측 정확도 확보가 가능함을 입증함[cite: 126, 127].
+* [cite_start]**성능 검증**: 간단한 구조의 **LSTM** 및 **Attention** 결합 모델만으로도 유의미한 예측 정확도 확보가 가능함을 입증함[cite: 127].
 * **향후 개선 방향**:
     * [cite_start]**Transformer** 기반 모델 도입을 통한 장기 시퀀스 처리 능력 고도화[cite: 129].
     * [cite_start]평점 불균형 해소를 위한 샘플링 기법 및 손실 함수(**Loss Function** ) 조정[cite: 131].
-    * [cite_start]상품 카테고리, 브랜드 등 외부 메타데이터 통합을 통한 성능 개선[cite: 132].
 
 ## 6. 참조 (Reference)
 * [cite_start][Amazon Reviews Data 2023 (McAuley Lab)](https://www.kaggle.com/datasets/wajahat1064/amazon-reviews-data-2023) [cite: 135]
 * [cite_start][Attention Mechanism (Wikidocs)](https://wikidocs.net/22893) [cite: 136]
+* [cite_start][Keras Tokenizer (Wikidocs)](https://wikidocs.net/182469) [cite: 137]
